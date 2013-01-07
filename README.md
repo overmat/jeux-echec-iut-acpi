@@ -1,2 +1,0 @@
-jeux-echec-iut-acpi
-===================
