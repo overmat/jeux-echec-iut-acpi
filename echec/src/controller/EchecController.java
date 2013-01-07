@@ -14,6 +14,7 @@ public class EchecController {
 		
 		this.plateauView = new JFramePlateauView(this);
 		
+		addListenersToModel();
 	}
 	
 	public void displayViews(){
@@ -23,5 +24,13 @@ public class EchecController {
 	
 	public void closeViews(){
 		plateauView.close();
+	}
+	
+	private void addListenersToModel() {
+		model.addButtonGraouListener(this.plateauView);
+	}
+	
+	public void notifyButtonGraou(){
+		model.buttonGraou();
 	}
 }

@@ -6,6 +6,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import listerners.ButtonGraouEvent;
+
 
 import controller.EchecController;
 
@@ -14,10 +16,11 @@ public class JFramePlateauView extends EchecView implements ActionListener{
 	
 	private JFrame frame = null;
 	private JPanel contentPane = null;
-	
+	private EchecController controller = null;
 	public JFramePlateauView(EchecController controller) {
 		super(controller);
 		// TODO Auto-generated constructor stub
+		this.controller = controller;
 		this.buildFrame();
 	}
 	
@@ -51,9 +54,15 @@ public class JFramePlateauView extends EchecView implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("Click bouton :D");
+		this.controller.notifyButtonGraou();
 		
 	}
+
+	@Override
+	public void resultButtonGraou(ButtonGraouEvent event) {
+		// TODO Auto-generated method stub
+		System.out.println(event.result);
+	}
+
 
 }

@@ -1,8 +1,9 @@
 package view;
+import listerners.ButtonGraouListener;
 import controller.EchecController;
 
 
-public abstract class EchecView {
+public abstract class EchecView implements ButtonGraouListener{
 	private EchecController controller = null;
 	
 	public EchecView(EchecController controller){
