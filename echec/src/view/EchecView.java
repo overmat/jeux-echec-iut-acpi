@@ -1,3 +1,6 @@
+package view;
+import controller.EchecController;
+
 
 public abstract class EchecView {
 	private EchecController controller = null;

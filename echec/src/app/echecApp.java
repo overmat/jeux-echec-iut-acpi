@@ -1,3 +1,7 @@
+package app;
+import model.EchecModel;
+import controller.EchecController;
+
 
 public class echecApp {
 

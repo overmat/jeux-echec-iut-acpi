@@ -1,3 +1,8 @@
+package controller;
+import view.EchecView;
+import view.JFramePlateauView;
+import model.EchecModel;
+
 
 public class EchecController {
 	public EchecView plateauView = null;
