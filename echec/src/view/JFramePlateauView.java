@@ -34,16 +34,11 @@ public class JFramePlateauView extends EchecView implements ActionListener{
 		frame = new JFrame();
 		contentPane = new JPanel();
 		
-		JButton  button = new JButton("Graou");
-		button.setLocation(0, 0);
-		button.addActionListener(this);
-		contentPane.add(button);
-		
 		ImageLabel imgChessBoard = new ImageLabel(images.getChessBoard());
 		contentPane.add(imgChessBoard);
 		frame.setContentPane(contentPane);
 		frame.setTitle("Echec de la mort qui tue et retue");
-		frame.setSize(800,600);
+		frame.setSize(800,675);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE ); 
 	}
