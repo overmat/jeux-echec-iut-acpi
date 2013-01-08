@@ -13,12 +13,16 @@ public class LoadImages {
 	public LoadImages() {
 		
 		try {
-			BufferedImage image = ImageIO.read(new File("images/echiquier.png"));
+			BufferedImage image = ImageIO.read(new File("img/chessboard.png"));
 			imageGrille  = new ImageIcon( image );
 		} catch (IOException ex) {
 			System.err.print("Impossible de charger l'image du de la grille");
 		}
 		
+	}
+	
+	public ImageIcon getChessBoard() { //image de fond
+		return this.imageGrille;
 	}
 	
 }

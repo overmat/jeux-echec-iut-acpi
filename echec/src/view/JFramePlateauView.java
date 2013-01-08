@@ -17,10 +17,14 @@ public class JFramePlateauView extends EchecView implements ActionListener{
 	private JFrame frame = null;
 	private JPanel contentPane = null;
 	private EchecController controller = null;
+	private LoadImages images = null;
 	public JFramePlateauView(EchecController controller) {
 		super(controller);
 		// TODO Auto-generated constructor stub
 		this.controller = controller;
+		
+		this.images = new LoadImages();
+		
 		this.buildFrame();
 	}
 	
@@ -33,6 +37,8 @@ public class JFramePlateauView extends EchecView implements ActionListener{
 		button.addActionListener(this);
 		contentPane.add(button);
 		
+		ImageLabel imgChessBoard = new ImageLabel(images.getChessBoard());
+		contentPane.add(imgChessBoard);
 		frame.setContentPane(contentPane);
 		frame.setTitle("Echec de la mort qui tue et retue");
 		frame.setSize(800,600);
