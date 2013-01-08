@@ -18,27 +18,27 @@ public class Grille {
 		
 		for(int i = 0; i < m_largeur; i++)
 		{
-			m_grille[i][1] = new Pion(i, 1, "Noir");
-			m_grille[i][6] = new Pion(i, 1, "Blanc");
+			m_grille[1][i] = new Pion(i, 1, "Noir");
+			m_grille[6][i] = new Pion(i, 6, "Blanc");
 		}
 		
 		m_grille[0][0] = new Tour(0, 0, "Noir");
-		m_grille[0][m_largeur-1] = new Tour(0, m_largeur-1, "Noir");
+		m_grille[0][7] = new Tour(0, m_largeur-1, "Noir");
 		m_grille[0][1] = new Cavalier(0, 1, "Noir");
-		m_grille[0][m_largeur-2] = new Cavalier(0, m_largeur-2, "Noir");
+		m_grille[0][6] = new Cavalier(0, m_largeur-2, "Noir");
 		m_grille[0][2] = new Fou(0, 2, "Noir");
-		m_grille[0][m_largeur-3] = new Fou(0, m_largeur-3, "Noir");
+		m_grille[0][5] = new Fou(0, m_largeur-3, "Noir");
 		m_grille[0][3] = new Reine(0, 3, "Noir");
 		m_grille[0][4] = new Roi(0, 4, "Noir");
 		
-		m_grille[6][0] = new Tour(6, 0, "Blanc");
-		m_grille[6][m_largeur-1] = new Tour(6, m_largeur-1, "Blanc");
-		m_grille[6][1] = new Cavalier(6, 1, "Blanc");
-		m_grille[6][m_largeur-2] = new Cavalier(6, m_largeur-2, "Blanc");
-		m_grille[6][2] = new Fou(6, 2, "Blanc");
-		m_grille[6][m_largeur-3] = new Fou(6, m_largeur-3, "Blanc");
-		m_grille[6][3] = new Reine(6, 3, "Blanc");
-		m_grille[6][4] = new Roi(6, 4, "Blanc");
+		m_grille[7][0] = new Tour(6, 0, "Blanc");
+		m_grille[7][7] = new Tour(6, m_largeur-1, "Blanc");
+		m_grille[7][1] = new Cavalier(6, 1, "Blanc");
+		m_grille[7][6] = new Cavalier(6, m_largeur-2, "Blanc");
+		m_grille[7][2] = new Fou(6, 2, "Blanc");
+		m_grille[7][5] = new Fou(6, m_largeur-3, "Blanc");
+		m_grille[7][3] = new Reine(6, 3, "Blanc");
+		m_grille[7][4] = new Roi(6, 4, "Blanc");
 		
 		
 	}
