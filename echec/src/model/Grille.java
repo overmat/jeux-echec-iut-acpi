@@ -2,7 +2,7 @@ package model;
 
 public class Grille {
 	
-	private Piece [] m_grille;
+	private Piece [][] m_grille;
 	private int m_largeur;
 	private int m_hauteur;
 	private int m_nb_cases;
@@ -11,7 +11,7 @@ public class Grille {
 		m_largeur = largeur;
 		m_hauteur = hauteur;
 		m_nb_cases = largeur * hauteur;
-		m_grille = new Piece[m_nb_cases];
+		m_grille = new Piece[largeur][hauteur];
 	}
 	
 	public void initialisation(){
