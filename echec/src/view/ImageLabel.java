@@ -6,9 +6,9 @@ import javax.swing.JLabel;
 public class ImageLabel extends JLabel{
 	private ImageIcon img;
 
-	private int posY, posX, xt, yt,w,h;
+	private int posY, posX,w,h;
 	
-    public ImageLabel(ImageIcon img, int posX, int posY, int w, int h,int x, int y) {
+    public ImageLabel(ImageIcon img, int posX, int posY, int w, int h) {
     		this.img = img;
     		this.setIcon(this.img);
     		
@@ -16,8 +16,6 @@ public class ImageLabel extends JLabel{
     		
     		this.posX = posX;
     		this.posY = posY;
-    		this.xt = x;
-    		this.yt = y;
     		this.w =w;
     		this.h =h;
     }

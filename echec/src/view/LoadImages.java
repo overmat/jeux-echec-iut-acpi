@@ -146,5 +146,8 @@ public class LoadImages {
 		return this.imageBlackReine;
 	}
 	
+	public static void hey() {
+		System.out.println("lol");
+	}
 	
 }

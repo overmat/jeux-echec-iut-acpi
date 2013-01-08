@@ -19,4 +19,8 @@ public abstract class Piece {
 		rules = new HashSet();
 	}
 	
+	public String getColor() {
+		return m_color;
+	}
+	
 }
