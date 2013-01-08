@@ -28,7 +28,7 @@ public class Grille {
 		m_grille[0][m_largeur-2] = new Cavalier(0, m_largeur-2, "Noir");
 		m_grille[0][2] = new Fou(0, 2, "Noir");
 		m_grille[0][m_largeur-3] = new Fou(0, m_largeur-3, "Noir");
-		m_grille[0][3] = new Dame(0, 3, "Noir");
+		m_grille[0][3] = new Reine(0, 3, "Noir");
 		m_grille[0][4] = new Roi(0, 4, "Noir");
 		
 		m_grille[6][0] = new Tour(6, 0, "Noir");
@@ -37,7 +37,7 @@ public class Grille {
 		m_grille[6][m_largeur-2] = new Cavalier(6, m_largeur-2, "Noir");
 		m_grille[6][2] = new Fou(6, 2, "Noir");
 		m_grille[6][m_largeur-3] = new Fou(6, m_largeur-3, "Noir");
-		m_grille[6][3] = new Dame(6, 3, "Noir");
+		m_grille[6][3] = new Reine(6, 3, "Noir");
 		m_grille[6][4] = new Roi(6, 4, "Noir");
 		
 		
