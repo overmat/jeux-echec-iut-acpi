@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DragSource;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -23,6 +25,9 @@ import model.Case;
 import model.Grille;
 import model.Piece;
 import view.LoadImages;
+
+import javax.swing.SwingUtilities;
+
 
 
 
@@ -93,9 +98,12 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 					}
 				
 					tmp_imgPiece = new ImageLabel((ImageIcon)method.invoke(images),40+(70*j),(70*i)+40, 70, 70);
-					tmp_imgPiece.addMouseMotionListener(this);
+					//tmp_imgPiece.addMouseMotionListener(this);
 					contentPane.add(tmp_imgPiece,0);
-							
+					
+					DragSource ds = new DragSource();
+					ds.createDefaultDragGestureRecognizer(tmp_imgPiece,
+							DnDConstants.ACTION_COPY, new DragGestureImpl());
 				}
 			}
 		}
@@ -160,7 +168,7 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 	public void mouseDragged(MouseEvent me) {
 		PointerInfo pointer = MouseInfo.getPointerInfo();
 		Point location = pointer.getLocation();
-		System.out.println(location);
+		
 		if(me.getX() > 0 && me.getX() < 800 && me.getY() > 0 && me.getY() < 675) {
 		// TODO Auto-generated method stub
 		ImageLabel c = (ImageLabel)me.getComponent();

@@ -25,4 +25,8 @@ public class ImageLabel extends JLabel{
     	this.setBounds(posX, posY, w, h);
     }
     
+    public ImageIcon getImg() {
+    	return img;
+    }
+    
 }
