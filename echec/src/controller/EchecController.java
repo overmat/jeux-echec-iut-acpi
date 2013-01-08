@@ -12,7 +12,7 @@ public class EchecController {
 	public EchecController(EchecModel model) {
 		this.model = model;
 		
-		this.plateauView = new JFramePlateauView(this);
+		this.plateauView = new JFramePlateauView(this, model.getGrille());
 		
 		addListenersToModel();
 	}

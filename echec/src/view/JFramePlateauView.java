@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import listerners.ButtonGraouEvent;
+import model.Grille;
+import model.Piece;
 
 
 import controller.EchecController;
@@ -20,13 +22,14 @@ public class JFramePlateauView extends EchecView implements ActionListener{
 	private JPanel contentPane = null;
 	private EchecController controller = null;
 	private LoadImages images = null;
-	public JFramePlateauView(EchecController controller) {
+	private Piece[][] m_listPieces = null;
+	public JFramePlateauView(EchecController controller, Grille grille) {
 		super(controller);
 		// TODO Auto-generated constructor stub
 		this.controller = controller;
 		
 		this.images = new LoadImages();
-		
+		m_listPieces = grille.getPieces();
 		this.buildFrame();
 	}
 	
@@ -65,6 +68,10 @@ public class JFramePlateauView extends EchecView implements ActionListener{
 	public void resultButtonGraou(ButtonGraouEvent event) {
 		// TODO Auto-generated method stub
 		System.out.println(event.result);
+	}
+	
+	public void initPieces() {
+		
 	}
 
 

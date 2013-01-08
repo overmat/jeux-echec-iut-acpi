@@ -31,16 +31,20 @@ public class Grille {
 		m_grille[0][3] = new Reine(0, 3, "Noir");
 		m_grille[0][4] = new Roi(0, 4, "Noir");
 		
-		m_grille[6][0] = new Tour(6, 0, "Noir");
-		m_grille[6][m_largeur-1] = new Tour(6, m_largeur-1, "Noir");
-		m_grille[6][1] = new Cavalier(6, 1, "Noir");
-		m_grille[6][m_largeur-2] = new Cavalier(6, m_largeur-2, "Noir");
-		m_grille[6][2] = new Fou(6, 2, "Noir");
-		m_grille[6][m_largeur-3] = new Fou(6, m_largeur-3, "Noir");
-		m_grille[6][3] = new Reine(6, 3, "Noir");
-		m_grille[6][4] = new Roi(6, 4, "Noir");
+		m_grille[6][0] = new Tour(6, 0, "Blanc");
+		m_grille[6][m_largeur-1] = new Tour(6, m_largeur-1, "Blanc");
+		m_grille[6][1] = new Cavalier(6, 1, "Blanc");
+		m_grille[6][m_largeur-2] = new Cavalier(6, m_largeur-2, "Blanc");
+		m_grille[6][2] = new Fou(6, 2, "Blanc");
+		m_grille[6][m_largeur-3] = new Fou(6, m_largeur-3, "Blanc");
+		m_grille[6][3] = new Reine(6, 3, "Blanc");
+		m_grille[6][4] = new Roi(6, 4, "Blanc");
 		
 		
+	}
+	
+	public Piece[][] getPieces() {
+		return m_grille;
 	}
 	
 
