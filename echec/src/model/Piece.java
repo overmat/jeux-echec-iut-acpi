@@ -1,7 +1,7 @@
 package model;
 import java.util.HashSet;
 
-public class Piece {
+public abstract class Piece {
 	
 	private int m_x;
 	private int m_y;
@@ -17,12 +17,6 @@ public class Piece {
 		m_color = color;
 		is_deleted = false;
 		rules = new HashSet();
-	}
-	
-	
-	public void addRule(Rule r)
-	{
-		rules.add(r);
 	}
 	
 }
