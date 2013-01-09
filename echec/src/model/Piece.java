@@ -3,11 +3,11 @@ import java.util.HashSet;
 
 public abstract class Piece {
 	
-	private int m_x;
-	private int m_y;
-	private String m_color;
-	private boolean is_deleted;
-	private HashSet rules;
+	protected int m_x;
+	protected int m_y;
+	protected String m_color;
+	protected boolean is_deleted;
+	protected HashSet<Rule> m_rules;
 	
 	
 	public Piece(int x, int y, String color)
@@ -16,11 +16,15 @@ public abstract class Piece {
 		m_y = y;
 		m_color = color;
 		is_deleted = false;
-		rules = new HashSet();
+		rules = new HashSet<Rule>();
 	}
+	
+	
+	public abstract void addRules();
 	
 	public String getColor() {
 		return m_color;
 	}
+	
 	
 }
