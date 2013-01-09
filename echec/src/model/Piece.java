@@ -49,22 +49,48 @@ public abstract class Piece {
 		
 		while (it.hasNext()){
 		   String cle =(String) it.next();
-		   boolean diagInfinite = cle.contains("*");
-		   System.out.println("DŽpart : "+ startLigne + ";" + startColonne);
+		   boolean infinite = cle.contains("*");
+		   //System.out.println("infinite = " + infinite);
+		   //System.out.println("DŽpart : x= "+ startLigne + "  y= " + startColonne);
 		   //System.out.println(this.m_allRules.getValueDeplacement(cle).getX().getM_y());
 		   rule = this.m_allRules.getValueDeplacement(cle).getX();
 		   if(rule.getM_z1() == 0 && rule.getM_z2() == 0) {
 			   tmp_dx = startLigne + rule.getM_y();
 			   tmp_dy = startColonne + rule.getM_x();
-			   System.out.println("1." + tmp_dx + ";" + tmp_dy);
+			   
+			   System.out.println("infinite = " + infinite);
+			   System.out.println("getM_x : "+ rule.getM_x());
+			   System.out.println("getM_y : "+ rule.getM_y());
+			   if ( infinite && (((rule.getM_y() == 7 || rule.getM_y() == -7) && dy==startColonne && dx!=startLigne) || ((rule.getM_x() == 7 || rule.getM_x() == -7) && dx==startLigne && dy!=startColonne)) )
+			   {
+				   System.out.println("BOUGEEE");
+				   	return true;
+			   }
+			   //System.out.println("1." + tmp_dx + ";" + tmp_dy);
 		   } else if(rule.getM_z1() != 0) {
 			   tmp_dx = startLigne + rule.getM_z1();
-			   tmp_dy = startColonne + rule.getM_z1();
+			   tmp_dy = startColonne - rule.getM_z1();
+			   
+			   if ( infinite && (rule.getM_z1() == 7 || rule.getM_z1() == -7) && rule.getM_z2() == 0 ) 
+			   {
+				   if (((float)(dx-startLigne)/(float)(dy-startColonne)) == -1)
+				   {
+					   return true;
+				   }
+			   }
 			   //System.out.println("2." + tmp_dx + ";" + tmp_dy);
 		   } else if(rule.getM_z2() != 0) {
-			   tmp_dx = startLigne - rule.getM_z2();
-			   tmp_dy = startColonne - rule.getM_z2();
-			   System.out.println("3." + tmp_dx + ";" + tmp_dy);
+			   tmp_dx = startLigne + rule.getM_z2();
+			   tmp_dy = startColonne + rule.getM_z2();
+			   
+			   if ( infinite && (rule.getM_z2() == 7 || rule.getM_z2() == -7) && rule.getM_z1() == 0 ) 
+			   {
+				   if (((float)(dx-startLigne)/(float)(dy-startColonne)) == 1)
+				   {
+					   return true;
+				   }
+			   }
+			   //System.out.println("3." + tmp_dx + ";" + tmp_dy);
 		   }
 		   
 		   tmp_destinations.add(new Couple<Integer, Integer>(tmp_dx, tmp_dy));
