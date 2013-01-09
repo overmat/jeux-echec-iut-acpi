@@ -16,52 +16,52 @@ public class Movement {
 		this.m_z2 = m_z2;
 	}
 	
-	HashMap<Integer, Movement> rule = new HashMap<Integer, Movement>();
+	HashMap<Movement,Boolean> rule = new HashMap<Movement,Boolean>();
 	
 	public void createRules(){
 		//pion
-		rule.put(0, new Movement(new Integer(0),new Integer(1),new Integer(0),new Integer(0)));
-		rule.put(1, new Movement(new Integer(0),new Integer(2),new Integer(0),new Integer(0)));
-		rule.put(2, new Movement(new Integer(1),new Integer(1),new Integer(0),new Integer(0)));
+		rule.put(new Movement(new Integer(0),new Integer(1),new Integer(0),new Integer(0)),false);
+		rule.put(new Movement(new Integer(0),new Integer(2),new Integer(0),new Integer(0)),false);
+		rule.put(new Movement(new Integer(1),new Integer(1),new Integer(0),new Integer(0)),false);
 		//cavalier
-		rule.put(3, new Movement(new Integer(1),new Integer(2),new Integer(0),new Integer(0)));
-		rule.put(4, new Movement(new Integer(1),new Integer(-2),new Integer(0),new Integer(0)));
-		rule.put(5, new Movement(new Integer(-1),new Integer(2),new Integer(0),new Integer(0)));
-		rule.put(6, new Movement(new Integer(-1),new Integer(-2),new Integer(0),new Integer(0)));
-		rule.put(7, new Movement(new Integer(2),new Integer(1),new Integer(0),new Integer(0)));
-		rule.put(8, new Movement(new Integer(2),new Integer(-1),new Integer(0),new Integer(0)));
-		rule.put(9, new Movement(new Integer(-2),new Integer(1),new Integer(0),new Integer(0)));
-		rule.put(10, new Movement(new Integer(-2),new Integer(-1),new Integer(0),new Integer(0)));
-		rule.put(10, new Movement(new Integer(-2),new Integer(-1),new Integer(0),new Integer(0)));
-		rule.put(10, new Movement(new Integer(-2),new Integer(-1),new Integer(0),new Integer(0)));
+		rule.put(new Movement(new Integer(1),new Integer(2),new Integer(0),new Integer(0)),true);
+		rule.put(new Movement(new Integer(1),new Integer(-2),new Integer(0),new Integer(0)),true);
+		rule.put(new Movement(new Integer(-1),new Integer(2),new Integer(0),new Integer(0)),true);
+		rule.put(new Movement(new Integer(-1),new Integer(-2),new Integer(0),new Integer(0)),true);
+		rule.put(new Movement(new Integer(2),new Integer(1),new Integer(0),new Integer(0)),true);
+		rule.put(new Movement(new Integer(2),new Integer(-1),new Integer(0),new Integer(0)),true);
+		rule.put(new Movement(new Integer(-2),new Integer(1),new Integer(0),new Integer(0)),true);
+		rule.put(new Movement(new Integer(-2),new Integer(-1),new Integer(0),new Integer(0)),true);
+		rule.put(new Movement(new Integer(-2),new Integer(-1),new Integer(0),new Integer(0)),true);
+		rule.put(new Movement(new Integer(-2),new Integer(-1),new Integer(0),new Integer(0)),true);
 		//tour
-		rule.put(10, new Movement(new Integer(0),new Integer(7),new Integer(0),new Integer(0)));
-		rule.put(10, new Movement(new Integer(0),new Integer(-7),new Integer(0),new Integer(0)));
-		rule.put(10, new Movement(new Integer(7),new Integer(0),new Integer(0),new Integer(0)));
-		rule.put(10, new Movement(new Integer(-7),new Integer(0),new Integer(0),new Integer(0)));
+		rule.put(new Movement(new Integer(0),new Integer(7),new Integer(0),new Integer(0)),false);
+		rule.put(new Movement(new Integer(0),new Integer(-7),new Integer(0),new Integer(0)),false);
+		rule.put(new Movement(new Integer(7),new Integer(0),new Integer(0),new Integer(0)),false);
+		rule.put(new Movement(new Integer(-7),new Integer(0),new Integer(0),new Integer(0)),false);
 		//fou
-		rule.put(10, new Movement(new Integer(0),new Integer(0),new Integer(7),new Integer(0)));
-		rule.put(10, new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(7)));
-		rule.put(10, new Movement(new Integer(0),new Integer(0),new Integer(-7),new Integer(0)));
-		rule.put(10, new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(-7)));
+		rule.put(new Movement(new Integer(0),new Integer(0),new Integer(7),new Integer(0)),false);
+		rule.put(new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(7)),false);
+		rule.put(new Movement(new Integer(0),new Integer(0),new Integer(-7),new Integer(0)),false);
+		rule.put(new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(-7)),false);
 		//reine
-		rule.put(10, new Movement(new Integer(0),new Integer(0),new Integer(7),new Integer(0)));
-		rule.put(10, new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(7)));
-		rule.put(10, new Movement(new Integer(0),new Integer(0),new Integer(-7),new Integer(0)));
-		rule.put(10, new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(-7)));
-		rule.put(10, new Movement(new Integer(0),new Integer(7),new Integer(0),new Integer(0)));
-		rule.put(10, new Movement(new Integer(0),new Integer(-7),new Integer(0),new Integer(0)));
-		rule.put(10, new Movement(new Integer(7),new Integer(0),new Integer(0),new Integer(0)));
-		rule.put(10, new Movement(new Integer(-7),new Integer(0),new Integer(0),new Integer(0)));
+		rule.put(new Movement(new Integer(0),new Integer(0),new Integer(7),new Integer(0)),false);
+		rule.put(new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(7)),false);
+		rule.put(new Movement(new Integer(0),new Integer(0),new Integer(-7),new Integer(0)),false);
+		rule.put(new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(-7)),false);
+		rule.put(new Movement(new Integer(0),new Integer(7),new Integer(0),new Integer(0)),false);
+		rule.put(new Movement(new Integer(0),new Integer(-7),new Integer(0),new Integer(0)),false);
+		rule.put(new Movement(new Integer(7),new Integer(0),new Integer(0),new Integer(0)),false);
+		rule.put(new Movement(new Integer(-7),new Integer(0),new Integer(0),new Integer(0)),false);
 		//roi
-		rule.put(10, new Movement(new Integer(0),new Integer(0),new Integer(1),new Integer(0)));
-		rule.put(10, new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(1)));
-		rule.put(10, new Movement(new Integer(0),new Integer(0),new Integer(-1),new Integer(0)));
-		rule.put(10, new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(-1)));
-		rule.put(10, new Movement(new Integer(0),new Integer(1),new Integer(0),new Integer(0)));
-		rule.put(10, new Movement(new Integer(0),new Integer(-1),new Integer(0),new Integer(0)));
-		rule.put(10, new Movement(new Integer(1),new Integer(0),new Integer(0),new Integer(0)));
-		rule.put(10, new Movement(new Integer(-1),new Integer(0),new Integer(0),new Integer(0)));
+		rule.put(new Movement(new Integer(0),new Integer(0),new Integer(1),new Integer(0)),false);
+		rule.put(new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(1)),false);
+		rule.put(new Movement(new Integer(0),new Integer(0),new Integer(-1),new Integer(0)),false);
+		rule.put(new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(-1)),false);
+		rule.put(new Movement(new Integer(0),new Integer(1),new Integer(0),new Integer(0)),false);
+		rule.put(new Movement(new Integer(0),new Integer(-1),new Integer(0),new Integer(0)),false);
+		rule.put(new Movement(new Integer(1),new Integer(0),new Integer(0),new Integer(0)),false);
+		rule.put(new Movement(new Integer(-1),new Integer(0),new Integer(0),new Integer(0)),false);
 	}
 
 }
