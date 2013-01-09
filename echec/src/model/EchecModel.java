@@ -24,6 +24,8 @@ public class EchecModel {
 	}
 	
 	public void tryToMove(int dx,int dy) {
+		System.out.println("hey");
+		m_grille.getPiece(0, 0).canMove(0, 0, 0, 0);
 		fireTriedToMove();
 	}
 	

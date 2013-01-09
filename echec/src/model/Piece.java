@@ -1,7 +1,11 @@
 package model;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
+
+import java.util.Map.Entry;
 
 public abstract class Piece {
 	
@@ -20,6 +24,7 @@ public abstract class Piece {
 		is_deleted = false;
 
 		m_rules = new HashMap<String,Couple<Movement,Boolean>>();
+		this.addRules();
 	}
 	
 	
@@ -28,6 +33,8 @@ public abstract class Piece {
 	public String getColor() {
 		return m_color;
 	}
+	
+	public abstract boolean canMove(int sx,int sy,int ds,int dy);
 	
 	
 }

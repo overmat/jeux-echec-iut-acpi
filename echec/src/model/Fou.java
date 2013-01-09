@@ -12,4 +12,10 @@ public class Fou extends Piece {
 		m_rules.put("*D2", m_allRules.getValueDeplacement("*D2"));
 		m_rules.put("*d2", m_allRules.getValueDeplacement("*d2"));
 	}
+
+	@Override
+	public boolean canMove(int sx, int sy, int ds, int dy) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

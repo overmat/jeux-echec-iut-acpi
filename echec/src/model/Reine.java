@@ -17,4 +17,10 @@ public class Reine extends Piece{
 		m_rules.put("*h", m_allRules.getValueDeplacement("*h"));
 
 	}
+
+	@Override
+	public boolean canMove(int sx, int sy, int ds, int dy) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
