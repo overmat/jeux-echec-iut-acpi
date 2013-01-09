@@ -14,10 +14,11 @@ public class Grille {
 		
 		m_grille = new Case[largeur][hauteur];
 		
-		for (int i = 0; i < hauteur; i++)
+		for (int i = 0; i < largeur; i++)
 		{
-			for (int j = 0; j< largeur; j++)
+			for (int j = 0; j< hauteur; j++)
 			{
+				System.out.println(i+":"+j);
 				m_grille[i][j] = new Case();
 			}
 		}

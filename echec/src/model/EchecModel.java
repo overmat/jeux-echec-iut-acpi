@@ -16,7 +16,7 @@ public class EchecModel {
 	private ResultMove resultMove;
 	public EchecModel() {
 		super();
-		m_grille = new Grille(8,8);
+		m_grille = new Grille(8,10);
 		m_grille.initialisation();
 		listeners = new EventListenerList();
 	}
