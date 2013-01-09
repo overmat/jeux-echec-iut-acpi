@@ -21,6 +21,5 @@ public abstract class Piece {
 	
 	public String getColor() {
 		return m_color;
-	}
-	
+	}	
 }

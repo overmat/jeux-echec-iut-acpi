@@ -174,7 +174,7 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 		ImageLabel c = (ImageLabel)me.getComponent();
 		// TODO Auto-generated method stub
 		//if(avancerBlock==null) return;
-		c.setLocation(me.getX()+c.getX()-25, me.getY()+c.getY()-25);
+		c.setLocation(me.getX()+c.getX()-35, me.getY()+c.getY()-35);
 		contentPane.add(c,0);
 		}
 	}
