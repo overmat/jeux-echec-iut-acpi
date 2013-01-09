@@ -38,7 +38,7 @@ public class Movement {
 		rule.put(new Movement(new Integer(-1),new Integer(2),new Integer(0),new Integer(0)),true);//1g2h
 		rule.put(new Movement(new Integer(-1),new Integer(-2),new Integer(0),new Integer(0)),true);//1g2b
 		rule.put(new Movement(new Integer(2),new Integer(1),new Integer(0),new Integer(0)),true);//2d1h
-		rule.put(new Movement(new Integer(2),new Integer(-1),new Integer(0),new Integer(0)),true);//2d1b
+		rule.put(new Movement(new Integer(2),new Integer(-1),new Integer(0),new Integer(0)),true);//2d1bx²
 		rule.put(new Movement(new Integer(-2),new Integer(1),new Integer(0),new Integer(0)),true);//2g1h
 		rule.put(new Movement(new Integer(-2),new Integer(-1),new Integer(0),new Integer(0)),true);//2g1b
 		//tour
