@@ -7,7 +7,7 @@ public abstract class Piece {
 	protected int m_y;
 	protected String m_color;
 	protected boolean is_deleted;
-	protected HashSet<Rule> m_rules;
+	protected HashSet m_rules;
 	
 	
 	public Piece(int x, int y, String color)
@@ -16,7 +16,7 @@ public abstract class Piece {
 		m_y = y;
 		m_color = color;
 		is_deleted = false;
-		rules = new HashSet<Rule>();
+		m_rules = new HashSet();
 	}
 	
 	

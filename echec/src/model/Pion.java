@@ -7,4 +7,10 @@ public class Pion extends Piece {
 		//rules.add();
 		
 	}
+
+	@Override
+	public void addRules() {
+		// TODO Auto-generated method stub
+		
+	}
 }
