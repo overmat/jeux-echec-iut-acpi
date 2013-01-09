@@ -18,9 +18,4 @@ public class Reine extends Piece{
 
 	}
 
-	@Override
-	public boolean canMove(int sx, int sy, int ds, int dy) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

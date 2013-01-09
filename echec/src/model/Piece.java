@@ -34,7 +34,51 @@ public abstract class Piece {
 		return m_color;
 	}
 	
-	public abstract boolean canMove(int sx,int sy,int ds,int dy);
+	public boolean canMove(int startLigne, int startColonne, int dx, int dy) {
+		Set cles = m_rules.keySet();
+		Iterator it = cles.iterator();
+		int tmp_dx, tmp_dy;
+		tmp_dx = startLigne;
+		tmp_dy = startColonne;
+		Couple<Integer,Integer> destCouple = new Couple<Integer, Integer>(dx, dy);
+		
+		Movement rule;
+		Boolean canMove = false;
+		
+		HashSet<Couple<Integer,Integer>> tmp_destinations = new HashSet<Couple<Integer, Integer>>();
+		
+		while (it.hasNext()){
+		   String cle =(String) it.next();
+		   boolean diagInfinite = cle.contains("*");
+		   System.out.println("DŽpart : "+ startLigne + ";" + startColonne);
+		   //System.out.println(this.m_allRules.getValueDeplacement(cle).getX().getM_y());
+		   rule = this.m_allRules.getValueDeplacement(cle).getX();
+		   if(rule.getM_z1() == 0 && rule.getM_z2() == 0) {
+			   tmp_dx = startLigne + rule.getM_y();
+			   tmp_dy = startColonne + rule.getM_x();
+			   System.out.println("1." + tmp_dx + ";" + tmp_dy);
+		   } else if(rule.getM_z1() != 0) {
+			   tmp_dx = startLigne + rule.getM_z1();
+			   tmp_dy = startColonne + rule.getM_z1();
+			   //System.out.println("2." + tmp_dx + ";" + tmp_dy);
+		   } else if(rule.getM_z2() != 0) {
+			   tmp_dx = startLigne - rule.getM_z2();
+			   tmp_dy = startColonne - rule.getM_z2();
+			   System.out.println("3." + tmp_dx + ";" + tmp_dy);
+		   }
+		   
+		   tmp_destinations.add(new Couple<Integer, Integer>(tmp_dx, tmp_dy));
+		}
+		
+		Iterator<Couple<Integer,Integer>> ite = tmp_destinations.iterator();
+		
+		while (ite.hasNext() && !canMove) {
+		 Couple<Integer,Integer> dest = ite.next();
+		 if(dest.getX() == destCouple.getX() && dest.getY() == destCouple.getY())
+			 canMove = true;
+		}
+		return canMove;
+	}
 	
 	
 }

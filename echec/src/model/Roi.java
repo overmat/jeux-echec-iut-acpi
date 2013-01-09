@@ -17,9 +17,4 @@ public class Roi extends Piece{
 		m_rules.put("1d2", m_allRules.getValueDeplacement("1d2"));
 	}
 
-	@Override
-	public boolean canMove(int sx, int sy, int ds, int dy) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

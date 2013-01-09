@@ -12,6 +12,8 @@ public class EchecModel {
 	
 	private Grille m_grille;
 	public String resultButton;
+	
+	private ResultMove resultMove;
 	public EchecModel() {
 		super();
 		m_grille = new Grille(8,8);
@@ -23,9 +25,17 @@ public class EchecModel {
 		listeners.add(MovementListener.class, listener);
 	}
 	
-	public void tryToMove(int dx,int dy) {
-		System.out.println("hey");
-		m_grille.getPiece(0, 0).canMove(0, 0, 0, 0);
+	public void tryToMove(int dx,int dy, int sx, int sy) {
+		boolean canMove;
+		canMove = m_grille.getPiece(sx, sy).canMove(sx, sy, dx, dy);
+		
+		if(!canMove) {
+			dx = sx;
+			dy = sy;
+		}
+		
+		this.resultMove = new ResultMove(sx,sy, dx, dy, false, canMove);
+		
 		fireTriedToMove();
 	}
 	
@@ -37,7 +47,7 @@ public class EchecModel {
 		MovementListener[] listenerList = (MovementListener[])listeners.getListeners(MovementListener.class);
 		
 		for(MovementListener listener : listenerList){
-			listener.resultMovement(new MovementEvent(this, resultButton));
+			listener.resultMovement(new MovementEvent(this, this.resultMove));
 		}
 	}
 

@@ -19,9 +19,5 @@ public class Cavalier extends Piece{
 		m_rules.put("2g1b", m_allRules.getValueDeplacement("2g1b"));
 	}
 
-	@Override
-	public boolean canMove(int sx, int sy, int ds, int dy) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 }

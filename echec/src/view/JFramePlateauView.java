@@ -45,6 +45,8 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 	private LoadImages images = null;
 	private Case[][] m_pieces = null;
 	
+	private ImageLabel draggedElement;
+	
 	public JFramePlateauView(EchecController controller, Case[][] pieces) {
 		super(controller);
 		// TODO Auto-generated constructor stub
@@ -113,8 +115,8 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 	@Override
 	public void mouseReleased(MouseEvent me) {
 		// TODO Auto-generated method stub
-		ImageLabel c = (ImageLabel)me.getComponent();
-		controller.notifyMvtPiece(c.getY() / 70,c.getX()/70);
+		 draggedElement = (ImageLabel)me.getComponent();
+		controller.notifyMvtPiece(draggedElement.getY() / 70,draggedElement.getX()/70,draggedElement.getStartY() / 70, draggedElement.getStartX() / 70 );
 		
 	}
 
@@ -136,6 +138,7 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 	public void resultMovement(MovementEvent event) {
 		// TODO Auto-generated method stub
 		
+		draggedElement.setLocation(40+(70*event.destColonne), 40+ event.destLigne*70);
 	}
 	
 	@Override
@@ -176,7 +179,10 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		ImageLabel c = (ImageLabel)e.getComponent();
+	
+		c.setStartX(c.getX());
+		c.setStartY(c.getY());
 	}
 
 	@Override

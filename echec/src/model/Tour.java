@@ -14,9 +14,4 @@ public class Tour extends Piece{
 		m_rules.put("*g", m_allRules.getValueDeplacement("*g"));
 	}
 
-	@Override
-	public boolean canMove(int sx, int sy, int ds, int dy) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

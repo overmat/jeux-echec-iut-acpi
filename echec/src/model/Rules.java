@@ -17,6 +17,7 @@ public class Rules {
 
     private Rules() {
     	rules = new HashMap<String,Couple<Movement,Boolean>>();
+    	createAllRules();
     }
     
     //mouvement vers le haut : 1h
@@ -30,6 +31,7 @@ public class Rules {
   	
     public static void createAllRules()
     {
+    
     	rules.put("1h", new Couple(new Movement(new Integer(0),new Integer(1),new Integer(0),new Integer(0)),false));
     	rules.put("2h", new Couple(new Movement(new Integer(0),new Integer(2),new Integer(0),new Integer(0)),false));
     	rules.put("1D1", new Couple(new Movement(new Integer(1),new Integer(1),new Integer(0),new Integer(0)),false));
@@ -67,6 +69,7 @@ public class Rules {
     
     public Couple<Movement,Boolean> getValueDeplacement(String key)
     {
+    	
     	return rules.get(key);
     }
     

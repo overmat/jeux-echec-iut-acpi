@@ -30,7 +30,8 @@ public class EchecController {
 		model.addMouvementListener(this.plateauView);
 	}
 	
-	public void notifyMvtPiece(int dx,int  dy){
-		model.tryToMove(dx, dy);
+	public void notifyMvtPiece(int dx,int  dy, int sx, int sy){
+		
+		model.tryToMove(dx, dy, sx, sy);
 	}
 }

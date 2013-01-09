@@ -7,6 +7,7 @@ public class ImageLabel extends JLabel{
 	private ImageIcon img;
 
 	private int posY, posX,w,h;
+	private int startx, starty;
 	
     public ImageLabel(ImageIcon img, int posX, int posY, int w, int h) {
     		this.img = img;
@@ -29,4 +30,17 @@ public class ImageLabel extends JLabel{
     	return img;
     }
     
+    public void setStartX(int x ) {
+    	this.startx = x;
+    }
+    public void setStartY(int y ) {
+    	this.starty = y; // piou piou
+    }
+    
+    public int getStartX() {
+    	return startx;
+    }
+    public int getStartY() {
+    	return starty;
+    }
 }
