@@ -15,9 +15,11 @@ import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.TransferHandler;
 
 
 import listerners.ButtonGraouEvent;
@@ -98,12 +100,10 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 					}
 				
 					tmp_imgPiece = new ImageLabel((ImageIcon)method.invoke(images),40+(70*j),(70*i)+40, 70, 70);
-					//tmp_imgPiece.addMouseMotionListener(this);
+					//tmp_imgPiece.addMouseListener(this);
+					tmp_imgPiece.addMouseMotionListener(this);
 					contentPane.add(tmp_imgPiece,0);
 					
-					DragSource ds = new DragSource();
-					ds.createDefaultDragGestureRecognizer(tmp_imgPiece,
-							DnDConstants.ACTION_COPY, new DragGestureImpl());
 				}
 			}
 		}
@@ -153,7 +153,7 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
+	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
