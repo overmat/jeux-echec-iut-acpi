@@ -21,10 +21,14 @@ public class LoadImages {
 	private ImageIcon imageBlackRoi;
 	private ImageIcon imageWhiteReine;
 	private ImageIcon imageBlackReine;
+	private ImageIcon imageWhitePrincesse;
+	private ImageIcon imageBlackPrincesse;
+	private ImageIcon imageBlackImperatrice;
+	private ImageIcon imageWhiteImperatrice;
 	public LoadImages() {
 		
 		try {
-			BufferedImage image = ImageIO.read(new File("img/chessboard.png"));
+			BufferedImage image = ImageIO.read(new File("img/chess_capablanca.png"));
 			imageGrille  = new ImageIcon( image );
 		} catch (IOException ex) {
 			System.err.print("Impossible de charger l'image du de la grille");
@@ -102,6 +106,30 @@ public class LoadImages {
 		} catch (IOException ex) {
 			System.err.print("Impossible de charger l'image du de la grille");
 		}
+		try {
+			BufferedImage image = ImageIO.read(new File("img/BlackPrincesse.png"));
+			imageBlackPrincesse  = new ImageIcon( image );
+		} catch (IOException ex) {
+			System.err.print("Impossible de charger l'image du de la grille");
+		}
+		try {
+			BufferedImage image = ImageIO.read(new File("img/WhitePrincesse.png"));
+			imageWhitePrincesse  = new ImageIcon( image );
+		} catch (IOException ex) {
+			System.err.print("Impossible de charger l'image du de la grille");
+		}
+		try {
+			BufferedImage image = ImageIO.read(new File("img/WhiteImperatrice.png"));
+			imageWhiteImperatrice  = new ImageIcon( image );
+		} catch (IOException ex) {
+			System.err.print("Impossible de charger l'image du de la grille");
+		}
+		try {
+			BufferedImage image = ImageIO.read(new File("img/BlackImperatrice.png"));
+			imageBlackImperatrice  = new ImageIcon( image );
+		} catch (IOException ex) {
+			System.err.print("Impossible de charger l'image du de la grille");
+		}
 		
 	}
 	
@@ -144,6 +172,18 @@ public class LoadImages {
 	}
 	public ImageIcon getBlackReine() { //image pion
 		return this.imageBlackReine;
+	}
+	public ImageIcon getBlackImperatrice() { //image pion
+		return this.imageBlackImperatrice;
+	}
+	public ImageIcon getWhiteImperatrice() { //image pion
+		return this.imageWhiteImperatrice;
+	}
+	public ImageIcon getWhitePrincesse() { //image pion
+		return this.imageWhitePrincesse;
+	}
+	public ImageIcon getBlackPrincesse() { //image pion
+		return this.imageBlackPrincesse;
 	}
 	
 	public static void hey() {

@@ -81,7 +81,7 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 
 	public void buildChessBoard() throws IllegalAccessException, InvocationTargetException {
 		// mise en place du damier
-		ImageLabel imgChessBoard = new ImageLabel(images.getChessBoard(), 0, 0, 640, 640);
+		ImageLabel imgChessBoard = new ImageLabel(images.getChessBoard(), 0, 0, 780, 640);
 		contentPane.add(imgChessBoard);
 		
 		java.lang.reflect.Method method = null;
@@ -89,7 +89,7 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 		ImageLabel tmp_imgPiece;
 		// affichage des pieces
 		for(int i=0;i<8;i++) {
-			for(int j=0;j<8;j++) {
+			for(int j=0;j<10;j++) {
 				if(m_pieces[i][j].hasPiece()) {
 
 					Piece piece = m_pieces[i][j].getPiece();
