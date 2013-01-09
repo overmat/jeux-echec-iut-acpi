@@ -17,6 +17,10 @@ public class Imperatrice extends Piece{
 		m_rules.put("2d1b", m_allRules.getValueDeplacement("2d1b"));
 		m_rules.put("2g1h", m_allRules.getValueDeplacement("2g1h"));
 		m_rules.put("2g1b", m_allRules.getValueDeplacement("2g1b"));
+		m_rules.put("*h", m_allRules.getValueDeplacement("*h"));
+		m_rules.put("*b", m_allRules.getValueDeplacement("*b"));
+		m_rules.put("*d", m_allRules.getValueDeplacement("*d"));
+		m_rules.put("*g", m_allRules.getValueDeplacement("*g"));
 	}
 
 

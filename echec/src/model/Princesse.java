@@ -17,6 +17,10 @@ public class Princesse extends Piece{
 		m_rules.put("2d1b", m_allRules.getValueDeplacement("2d1b"));
 		m_rules.put("2g1h", m_allRules.getValueDeplacement("2g1h"));
 		m_rules.put("2g1b", m_allRules.getValueDeplacement("2g1b"));
+		m_rules.put("*D1", m_allRules.getValueDeplacement("*D1"));
+		m_rules.put("*d1", m_allRules.getValueDeplacement("*d1"));
+		m_rules.put("*D2", m_allRules.getValueDeplacement("*D2"));
+		m_rules.put("*d2", m_allRules.getValueDeplacement("*d2"));
 	}
 
 
