@@ -3,8 +3,8 @@ package model;
 import javax.swing.event.EventListenerList;
 
 
-import listerners.ButtonGraouEvent;
-import listerners.ButtonGraouListener;
+import listerners.MovementEvent;
+import listerners.MovementListener;
 
 
 public class EchecModel {
@@ -19,24 +19,24 @@ public class EchecModel {
 		listeners = new EventListenerList();
 	}
 	
-	public void addButtonGraouListener(ButtonGraouListener listener){
-		listeners.add(ButtonGraouListener.class, listener);
+	public void addMouvementListener(MovementListener listener){
+		listeners.add(MovementListener.class, listener);
 	}
 	
-	public void buttonGraou() {
-		this.resultButton = "Yahoo ce texte vient du modele";
-		fireButtonGraouClicked();
+	public void tryToMove(int dx,int dy) {
+		fireTriedToMove();
 	}
 	
 	public Grille getGrille() {
 		return m_grille;
 	}
-	private void fireButtonGraouClicked() {
+	private void fireTriedToMove() {
 		// TODO Auto-generated method stub
-		ButtonGraouListener[] listenerList = (ButtonGraouListener[])listeners.getListeners(ButtonGraouListener.class);
+		MovementListener[] listenerList = (MovementListener[])listeners.getListeners(MovementListener.class);
 		
-		for(ButtonGraouListener listener : listenerList){
-			listener.resultButtonGraou(new ButtonGraouEvent(this, resultButton));
+		for(MovementListener listener : listenerList){
+			listener.resultMovement(new MovementEvent(this, resultButton));
 		}
 	}
+
 }

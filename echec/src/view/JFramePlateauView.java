@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.TransferHandler;
 
 
-import listerners.ButtonGraouEvent;
+import listerners.MovementEvent;
 import model.Case;
 import model.Grille;
 import model.Piece;
@@ -98,9 +98,9 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 					} catch (NoSuchMethodException e) {
 						  System.out.println("MŽthode inexistante : "+tmp_methodName);
 					}
-				
+					
 					tmp_imgPiece = new ImageLabel((ImageIcon)method.invoke(images),40+(70*j),(70*i)+40, 70, 70);
-					//tmp_imgPiece.addMouseListener(this);
+					tmp_imgPiece.addMouseListener(this);
 					tmp_imgPiece.addMouseMotionListener(this);
 					contentPane.add(tmp_imgPiece,0);
 					
@@ -109,6 +109,35 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 		}
 		
 	}
+	
+	@Override
+	public void mouseReleased(MouseEvent me) {
+		// TODO Auto-generated method stub
+		ImageLabel c = (ImageLabel)me.getComponent();
+		controller.notifyMvtPiece(c.getY() / 70,c.getX()/70);
+		
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent me) {
+		
+		if(me.getX() > 0 && me.getX() < 800 && me.getY() > 0 && me.getY() < 675) {
+		// TODO Auto-generated method stub
+		ImageLabel c = (ImageLabel)me.getComponent();
+		// TODO Auto-generated method stub
+		//if(avancerBlock==null) return;
+		c.setLocation(me.getX()+c.getX()-35, me.getY()+c.getY()-35);
+		
+		contentPane.add(c,0);
+		}
+	}
+	
+	@Override
+	public void resultMovement(MovementEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	@Override
 	public void display() {
 		// TODO Auto-generated method stub
@@ -123,16 +152,8 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		this.controller.notifyButtonGraou();
 		
 	}
-
-	@Override
-	public void resultButtonGraou(ButtonGraouEvent event) {
-		// TODO Auto-generated method stub
-		System.out.println(event.result);
-	}
-	
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -156,27 +177,6 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent me) {
-		PointerInfo pointer = MouseInfo.getPointerInfo();
-		Point location = pointer.getLocation();
-		
-		if(me.getX() > 0 && me.getX() < 800 && me.getY() > 0 && me.getY() < 675) {
-		// TODO Auto-generated method stub
-		ImageLabel c = (ImageLabel)me.getComponent();
-		// TODO Auto-generated method stub
-		//if(avancerBlock==null) return;
-		c.setLocation(me.getX()+c.getX()-25, me.getY()+c.getY()-25);
-		contentPane.add(c,0);
-		}
 	}
 
 	@Override

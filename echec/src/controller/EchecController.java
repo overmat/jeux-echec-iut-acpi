@@ -27,10 +27,10 @@ public class EchecController {
 	}
 	
 	private void addListenersToModel() {
-		model.addButtonGraouListener(this.plateauView);
+		model.addMouvementListener(this.plateauView);
 	}
 	
-	public void notifyButtonGraou(){
-		model.buttonGraou();
+	public void notifyMvtPiece(int dx,int  dy){
+		model.tryToMove(dx, dy);
 	}
 }
