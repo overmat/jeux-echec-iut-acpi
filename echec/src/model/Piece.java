@@ -34,7 +34,7 @@ public abstract class Piece {
 		return m_color;
 	}
 	
-	public boolean canMove(int startLigne, int startColonne, int dx, int dy) {
+	public boolean canMove(Grille grille, int startLigne, int startColonne, int dx, int dy) {
 		Set cles = m_rules.keySet();
 		Iterator it = cles.iterator();
 		int tmp_dx, tmp_dy;
@@ -46,7 +46,8 @@ public abstract class Piece {
 		Boolean canMove = false;
 		
 		HashSet<Couple<Integer,Integer>> tmp_destinations = new HashSet<Couple<Integer, Integer>>();
-		
+		int coef = 1;
+		boolean canJump;
 		while (it.hasNext()){
 		   String cle =(String) it.next();
 		   boolean infinite = cle.contains("*");
@@ -54,26 +55,32 @@ public abstract class Piece {
 		   //System.out.println("DŽpart : x= "+ startLigne + "  y= " + startColonne);
 		   //System.out.println(this.m_allRules.getValueDeplacement(cle).getX().getM_y());
 		   rule = this.m_allRules.getValueDeplacement(cle).getX();
+		   canJump = this.m_allRules.getValueDeplacement(cle).getY();
 		   if(rule.getM_z1() == 0 && rule.getM_z2() == 0) {
-			   tmp_dx = startLigne + rule.getM_y();
-			   tmp_dy = startColonne + rule.getM_x();
 			   
-			   System.out.println("infinite = " + infinite);
-			   System.out.println("getM_x : "+ rule.getM_x());
-			   System.out.println("getM_y : "+ rule.getM_y());
-			   if ( infinite && (((rule.getM_y() == 7 || rule.getM_y() == -7) && dy==startColonne && dx!=startLigne) || ((rule.getM_x() == 7 || rule.getM_x() == -7) && dx==startLigne && dy!=startColonne)) )
+			   if(this.getColor() == "White") {
+				   coef = -1;
+			   }
+			   
+			   tmp_dx = startLigne + coef * rule.getM_y();
+			   tmp_dy = startColonne + coef * rule.getM_x();
+			   
+			   if ( (infinite && 
+					   ((
+							   (rule.getM_y() == 7 || rule.getM_y() == -7) && dy==startColonne && dx!=startLigne) 
+							   || ((rule.getM_x() == 9 || rule.getM_x() == -9) && dx==startLigne && dy!=startColonne))
+					   ) && isDestAvailable(grille, startLigne, startColonne, dx, dy))
 			   {
-				   System.out.println("BOUGEEE");
 				   	return true;
 			   }
-			   //System.out.println("1." + tmp_dx + ";" + tmp_dy);
+			   
 		   } else if(rule.getM_z1() != 0) {
 			   tmp_dx = startLigne + rule.getM_z1();
 			   tmp_dy = startColonne - rule.getM_z1();
 			   
 			   if ( infinite && (rule.getM_z1() == 7 || rule.getM_z1() == -7) && rule.getM_z2() == 0 ) 
 			   {
-				   if (((float)(dx-startLigne)/(float)(dy-startColonne)) == -1)
+				   if (((float)(dx-startLigne)/(float)(dy-startColonne)) == -1 && isDestAvailable(grille, startLigne, startColonne, dx, dy))
 				   {
 					   return true;
 				   }
@@ -85,16 +92,19 @@ public abstract class Piece {
 			   
 			   if ( infinite && (rule.getM_z2() == 7 || rule.getM_z2() == -7) && rule.getM_z1() == 0 ) 
 			   {
-				   if (((float)(dx-startLigne)/(float)(dy-startColonne)) == 1)
+				   if (((float)(dx-startLigne)/(float)(dy-startColonne)) == 1 && isDestAvailable(grille, startLigne, startColonne, dx, dy))
 				   {
 					   return true;
 				   }
 			   }
 			   //System.out.println("3." + tmp_dx + ";" + tmp_dy);
 		   }
-		   
-		   tmp_destinations.add(new Couple<Integer, Integer>(tmp_dx, tmp_dy));
-		}
+		   boolean canAdd = isDestAvailable(grille, startLigne, startColonne, tmp_dx, tmp_dy);
+		  
+		   if(canAdd) {
+			   tmp_destinations.add(new Couple<Integer, Integer>(tmp_dx, tmp_dy));
+		   }
+	}
 		
 		Iterator<Couple<Integer,Integer>> ite = tmp_destinations.iterator();
 		
@@ -104,6 +114,20 @@ public abstract class Piece {
 			 canMove = true;
 		}
 		return canMove;
+	}
+	
+	private boolean isDestAvailable(Grille grille, int startLigne, int startColonne, int destLigne, int destColonne) {
+	   boolean canAdd = true;
+	   if(destColonne == startColonne && destLigne != startLigne) {
+		   int i = startLigne+1;
+		   while(i < destLigne && canAdd) {
+			   if(grille.hasPiece(i, destColonne)) {
+				   canAdd = false;
+			   }
+			   i++;
+		   }
+	   }
+		return canAdd;
 	}
 	
 	

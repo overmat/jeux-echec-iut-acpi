@@ -18,7 +18,6 @@ public class Grille {
 		{
 			for (int j = 0; j< hauteur; j++)
 			{
-				System.out.println(i+":"+j);
 				m_grille[i][j] = new Case();
 			}
 		}

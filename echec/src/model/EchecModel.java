@@ -27,7 +27,7 @@ public class EchecModel {
 	
 	public void tryToMove(int dx,int dy, int sx, int sy) {
 		boolean canMove;
-		canMove = m_grille.getPiece(sx, sy).canMove(sx, sy, dx, dy);
+		canMove = m_grille.getPiece(sx, sy).canMove(m_grille,sx, sy, dx, dy);
 		
 		if(!canMove) {
 			dx = sx;
