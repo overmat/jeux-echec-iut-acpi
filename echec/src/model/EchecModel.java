@@ -31,7 +31,9 @@ public class EchecModel {
 		
 		if(!canMove) {
 			dx = sx;
-			dy = sy;
+			dy = sy;	
+		} else {
+			m_grille.deplacerPiece(sx, sy, dx, dy);
 		}
 		
 		this.resultMove = new ResultMove(sx,sy, dx, dy, false, canMove);
