@@ -5,8 +5,10 @@ import java.util.Set;
 
 public class Pion extends Piece {
 	
+	public boolean alwaysTrue;
 	public Pion(int x, int y, String color){
 		super(x, y, color);
+		this.type = "Pion";
 		//rules.add();
 		
 	}

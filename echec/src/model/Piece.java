@@ -14,7 +14,9 @@ public abstract class Piece {
 	protected int m_y;
 	protected String m_color;
 	protected boolean is_deleted;
+	protected boolean firstMove;
 	protected Map<String,Couple<Movement,Boolean>> m_rules;
+	protected String type;
 	
 	public Piece(int x, int y, String color)
 	{
@@ -22,9 +24,10 @@ public abstract class Piece {
 		m_y = y;
 		m_color = color;
 		is_deleted = false;
-
+		firstMove = true;
 		m_rules = new HashMap<String,Couple<Movement,Boolean>>();
 		this.addRules();
+		type = "Piece";
 	}
 	
 	
@@ -35,7 +38,9 @@ public abstract class Piece {
 	}
 	
 	public boolean canMove(Grille grille, int startLigne, int startColonne, int dx, int dy) {
-		System.out.println("B  "+dx+":"+dy);
+		if(sameColor(grille, startLigne,startColonne,dx,dy))
+			return false;
+		System.out.println("hey");
 		Set cles = m_rules.keySet();
 		Iterator it = cles.iterator();
 		int tmp_dx, tmp_dy;
@@ -63,8 +68,11 @@ public abstract class Piece {
 				   coef = -1;
 			   }
 			   
-			   tmp_dx = startLigne + coef * rule.getM_y();
-			   tmp_dy = startColonne + coef * rule.getM_x();
+			  
+				   tmp_dx = startLigne + coef * rule.getM_y();
+				   tmp_dy = startColonne + coef * rule.getM_x();
+			   
+			   
 			   
 			   if ( (infinite && 
 					   ((
@@ -76,9 +84,12 @@ public abstract class Piece {
 			   }
 			   
 		   } else if(rule.getM_z1() != 0) {
-			   tmp_dx = startLigne + rule.getM_z1();
+			   if(this.getColor() == "White") {
+				   coef = -1;
+			   }
+			   tmp_dx = startLigne + coef * rule.getM_z1();
 			   tmp_dy = startColonne - rule.getM_z1();
-			   
+			  // System.out.println(startLigne + ":" + startColonne + " // " + rule.getM_z1());
 			   if ( infinite && (rule.getM_z1() == 7 || rule.getM_z1() == -7) && rule.getM_z2() == 0 ) 
 			   {
 				   if (((float)(dx-startLigne)/(float)(dy-startColonne)) == -1 && isDestAvailable(grille, startLigne, startColonne, dx, dy))
@@ -86,11 +97,14 @@ public abstract class Piece {
 					   return true;
 				   }
 			   }
-			   //System.out.println("2." + tmp_dx + ";" + tmp_dy);
+			   System.out.println("2." + tmp_dx + ";" + tmp_dy);
 		   } else if(rule.getM_z2() != 0) {
-			   tmp_dx = startLigne + rule.getM_z2();
+			   if(this.getColor() == "White") {
+				   coef = -1;
+			   }
+			   tmp_dx = startLigne + coef * rule.getM_z2();
 			   tmp_dy = startColonne + rule.getM_z2();
-			   
+			   System.out.println("2. "+startLigne + ":" + startColonne + " // " + rule.getM_z2());
 			   if ( infinite && (rule.getM_z2() == 7 || rule.getM_z2() == -7) && rule.getM_z1() == 0 ) 
 			   {
 				   if (((float)(dx-startLigne)/(float)(dy-startColonne)) == 1 && isDestAvailable(grille, startLigne, startColonne, dx, dy))
@@ -98,7 +112,7 @@ public abstract class Piece {
 					   return true;
 				   }
 			   }
-			   //System.out.println("3." + tmp_dx + ";" + tmp_dy);
+			   System.out.println("3." + tmp_dx + ";" + tmp_dy);
 		   }
 		   boolean canAdd = isDestAvailable(grille, startLigne, startColonne, tmp_dx, tmp_dy);
 		  
@@ -114,12 +128,27 @@ public abstract class Piece {
 		 if(dest.getX() == destCouple.getX() && dest.getY() == destCouple.getY())
 			 canMove = true;
 		}
+		
+		if(firstMove == false && this.getClass().getSimpleName().compareTo("Pion") == 0 ) {
+			if((dx - startLigne == 2) || (dx - startLigne == -2)) {
+				return false;
+			}
+		}
+		
+		this.firstMove = false;
 		return canMove;
 	}
 	
 	private boolean isDestAvailable(Grille grille, int startLigne, int startColonne, int destLigne, int destColonne) {
 	   boolean canAdd = true;
+	   if(destColonne > 10 || destColonne < 0 || destLigne > 8 || destLigne < 0)
+		   return false;
 	   if(destColonne == startColonne && destLigne != startLigne) {
+		   if(destLigne < startLigne) {
+		  		int tmp = destLigne;
+		  		destLigne = startLigne;
+		  		startLigne = tmp;
+		  	}
 		   int i = startLigne+1;
 		   while(i < destLigne && canAdd) {
 			   if(grille.hasPiece(i, destColonne)) {
@@ -128,8 +157,11 @@ public abstract class Piece {
 			   i++;
 		   }
 	   } else if(destLigne == startLigne && destColonne != startColonne) {
-		  System.out.println("A  "+destColonne+":"+startColonne);
-		   if(destColonne > startColonne) {
+		  	if(destColonne < startColonne) {
+		  		int tmp = destColonne;
+		  		destColonne = startColonne;
+		  		startColonne = tmp;
+		  	}
 			   int j = startColonne+1;
 			   while(j < destColonne && canAdd) {
 				   if(grille.hasPiece(destLigne, j)) {
@@ -137,19 +169,70 @@ public abstract class Piece {
 				   }
 				   j++;
 			   }
-		   }
-		   else {
-			   int j = startColonne-1;
-		   
-			   while(j > destColonne && canAdd) {
-				   if(grille.hasPiece(destLigne, j)) {
+	   } else if(destLigne != startLigne && destColonne != startColonne && (((float)(destLigne-startLigne)/(float)(destColonne-startColonne)) == 1 || ((float)(destLigne-startLigne)/(float)(destColonne-startColonne)) == -1)) {
+		  int j = 0,i = 0;
+		   int coeffI = 1, coeffJ = 1;
+		   if(destLigne > startLigne && destColonne > startColonne) {
+			    i = startLigne + 1;
+			    j = startColonne +1;
+			    
+			    while(i < destLigne && j < destColonne && i < 8 && j < 10) {
+					   if(grille.hasPiece(i, j)) {
+						   canAdd = false;
+					   }
+					   i = i + 1;
+					   j = j + 1;
+				   }
+		   }else if(destLigne < startLigne && destColonne < startColonne) {
+			   i = startLigne - 1;
+			    j = startColonne  - 1;
+			   while(i > destLigne && j > destColonne && i > -1 && j > -1) {
+				   if(grille.hasPiece(i, j)) {
 					   canAdd = false;
 				   }
-				   j--;
+				   i = i - 1;
+				   j = j - 1;
+			   }
+		   } else if(destLigne < startLigne && destColonne > startColonne) {
+			   i = startLigne - 1;
+			    j = startColonne  + 1;
+			   while(i > destLigne && j < destColonne && i > -1 && j < 10) {
+				   if(grille.hasPiece(i, j)) {
+					   canAdd = false;
+				   }
+				   i = i - 1;
+				   j = j + 1;
+			   }
+		   } else if(destLigne > startLigne && destColonne < startColonne) {
+			   i = startLigne + 1;
+			    j = startColonne  - 1;
+			   while(i < destLigne && j > destColonne && j > -1 && i < 10) {
+				   if(grille.hasPiece(i, j)) {
+					   canAdd = false;
+				   }
+				   i = i + 1;
+				   j = j - 1;
 			   }
 		   }
+		  
 	   }
 		return canAdd;
+	}
+	
+	private boolean sameColor(Grille grille, int startLigne, int startColonne, int destLigne, int destColonne) {
+		
+		if ( grille.hasPiece(destLigne, destColonne))
+		{
+			String colorStart = grille.getPiece(startLigne, startColonne).getColor();
+			String colorDest = grille.getPiece(destLigne, destColonne).getColor();
+			if(colorStart != colorDest) 
+				return false;
+			return true;
+		} 
+		else {
+			return false;
+		}
+		
 	}
 	
 	

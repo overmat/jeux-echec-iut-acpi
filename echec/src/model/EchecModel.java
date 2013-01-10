@@ -26,17 +26,19 @@ public class EchecModel {
 	}
 	
 	public void tryToMove(int dx,int dy, int sx, int sy) {
-		boolean canMove;
-		canMove = m_grille.getPiece(sx, sy).canMove(m_grille,sx, sy, dx, dy);
 		
-		if(!canMove) {
-			dx = sx;
-			dy = sy;	
-		} else {
+		boolean canMove = m_grille.getPiece(sx, sy).canMove(m_grille,sx, sy, dx, dy);
+		boolean hasEated = false;
+		
+		if(canMove) {
+			if ( m_grille.hasPiece(dx, dy)) {
+				hasEated = true;
+			}
+			
 			m_grille.deplacerPiece(sx, sy, dx, dy);
 		}
 		
-		this.resultMove = new ResultMove(sx,sy, dx, dy, false, canMove);
+		this.resultMove = new ResultMove(sx,sy, dx, dy, hasEated, canMove);
 		
 		fireTriedToMove();
 	}

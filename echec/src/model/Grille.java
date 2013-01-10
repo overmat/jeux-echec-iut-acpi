@@ -59,8 +59,10 @@ public class Grille {
 	
 	public void deplacerPiece(int xD, int yD, int xF, int yF)
 	{
-		m_grille[xF][yF].setPiece(m_grille[xD][yD].getPiece());
-		m_grille[xD][yD] = new Case();
+		
+			m_grille[xF][yF].setPiece(m_grille[xD][yD].getPiece());
+			m_grille[xD][yD] = new Case();
+		
 	}
 	
 	public boolean hasPiece(int x, int y) {

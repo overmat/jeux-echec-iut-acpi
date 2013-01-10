@@ -48,7 +48,7 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 	private EchecController controller = null;
 	private LoadImages images = null;
 	private Case[][] m_pieces = null;
-	
+	private ImageLabel[][] tabImg;
 	private ImageLabel draggedElement;
 	
 	public JFramePlateauView(EchecController controller, Case[][] pieces) {
@@ -57,7 +57,7 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 		this.controller = controller;
 		this.m_pieces = pieces;
 		this.images = new LoadImages();
-		
+		tabImg = new ImageLabel[8][10];
 		this.buildFrame();
 		try {
 			this.buildChessBoard();
@@ -106,6 +106,7 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 					}
 					
 					tmp_imgPiece = new ImageLabel((ImageIcon)method.invoke(images),40+(70*j),(70*i)+40, 70, 70);
+					tabImg[i][j] = tmp_imgPiece;
 					tmp_imgPiece.addMouseListener(this);
 					tmp_imgPiece.addMouseMotionListener(this);
 					contentPane.add(tmp_imgPiece,0);
@@ -119,7 +120,7 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 	@Override
 	public void mouseReleased(MouseEvent me) {
 		// TODO Auto-generated method stub
-		 draggedElement = (ImageLabel)me.getComponent();
+		draggedElement = (ImageLabel)me.getComponent();
 		controller.notifyMvtPiece(draggedElement.getY() / 70,draggedElement.getX()/70,draggedElement.getStartY() / 70, draggedElement.getStartX() / 70 );
 		
 	}
@@ -140,18 +141,27 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 	
 	@Override
 	public void resultMovement(MovementEvent event) {
-		// TODO Auto-generated method stub
-		
-		draggedElement.setLocation(40+(70*event.destColonne), 40+ event.destLigne*70);
-		
 		File son;
+		if(event.eat) {
+			contentPane.remove(tabImg[event.destLigne][event.destColonne]);
+		}
+		if(event.canMove) {
+			draggedElement.setLocation(40+(70*event.destColonne), 40+ event.destLigne*70);
+			tabImg[event.destLigne][event.destColonne] = draggedElement;	
+		} else {
+			draggedElement.setLocation(40+(70*event.startColonne), 40+ event.startLigne*70);
+		}
+		
+		
 		if (!event.canMove)
 		{
 			son = new File("./sounds/stupide.wav");
 		}
-		else
+		else if(event.canMove && !event.eat)
 		{
 			son = new File("./sounds/pioupiou.wav");
+		} else {
+			son = new File("./sounds/miammiam.wav");
 		}
 		AudioClip clip = null;
 		try
