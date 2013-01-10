@@ -35,6 +35,7 @@ public abstract class Piece {
 	}
 	
 	public boolean canMove(Grille grille, int startLigne, int startColonne, int dx, int dy) {
+		System.out.println("B  "+dx+":"+dy);
 		Set cles = m_rules.keySet();
 		Iterator it = cles.iterator();
 		int tmp_dx, tmp_dy;
@@ -125,6 +126,27 @@ public abstract class Piece {
 				   canAdd = false;
 			   }
 			   i++;
+		   }
+	   } else if(destLigne == startLigne && destColonne != startColonne) {
+		  System.out.println("A  "+destColonne+":"+startColonne);
+		   if(destColonne > startColonne) {
+			   int j = startColonne+1;
+			   while(j < destColonne && canAdd) {
+				   if(grille.hasPiece(destLigne, j)) {
+					   canAdd = false;
+				   }
+				   j++;
+			   }
+		   }
+		   else {
+			   int j = startColonne-1;
+		   
+			   while(j > destColonne && canAdd) {
+				   if(grille.hasPiece(destLigne, j)) {
+					   canAdd = false;
+				   }
+				   j--;
+			   }
 		   }
 	   }
 		return canAdd;
