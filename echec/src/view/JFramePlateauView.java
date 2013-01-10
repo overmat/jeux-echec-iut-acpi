@@ -1,4 +1,6 @@
 package view;
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -11,7 +13,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -139,6 +143,22 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 		// TODO Auto-generated method stub
 		
 		draggedElement.setLocation(40+(70*event.destColonne), 40+ event.destLigne*70);
+		
+		if (!event.canMove)
+		{
+			File son = new File("ding.wav");
+			AudioClip clip = null;
+			try
+			{
+			clip = Applet.newAudioClip(son.toURI().toURL());
+			}
+			catch (MalformedURLException e)
+			{
+			System.out.println(e.getMessage());
+			}
+			clip.play();
+		}
+		
 	}
 	
 	@Override
