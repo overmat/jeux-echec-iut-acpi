@@ -144,20 +144,25 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 		
 		draggedElement.setLocation(40+(70*event.destColonne), 40+ event.destLigne*70);
 		
+		File son;
 		if (!event.canMove)
 		{
-			File son = new File("./sounds/stupide.wav");
-			AudioClip clip = null;
-			try
-			{
-			clip = Applet.newAudioClip(son.toURI().toURL());
-			}
-			catch (MalformedURLException e)
-			{
-			System.out.println(e.getMessage());
-			}
-			clip.play();
+			son = new File("./sounds/stupide.wav");
 		}
+		else
+		{
+			son = new File("./sounds/pioupiou.wav");
+		}
+		AudioClip clip = null;
+		try
+		{
+		clip = Applet.newAudioClip(son.toURI().toURL());
+		}
+		catch (MalformedURLException e)
+		{
+		System.out.println(e.getMessage());
+		}
+		clip.play();
 		
 	}
 	
