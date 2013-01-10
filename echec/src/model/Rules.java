@@ -47,8 +47,8 @@ public class Rules {
     	
     	rules.put("*h", new Couple(new Movement(new Integer(0),new Integer(7),new Integer(0),new Integer(0)),false));
     	rules.put("*b", new Couple(new Movement(new Integer(0),new Integer(-7),new Integer(0),new Integer(0)),false));
-    	rules.put("*d", new Couple(new Movement(new Integer(7),new Integer(0),new Integer(0),new Integer(0)),false));
-    	rules.put("*g", new Couple(new Movement(new Integer(-7),new Integer(0),new Integer(0),new Integer(0)),false));
+    	rules.put("*d", new Couple(new Movement(new Integer(9),new Integer(0),new Integer(0),new Integer(0)),false));
+    	rules.put("*g", new Couple(new Movement(new Integer(-9),new Integer(0),new Integer(0),new Integer(0)),false));
     	
     	rules.put("*D1", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(7),new Integer(0)),false));
     	rules.put("*d1", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(7)),false));
