@@ -35,6 +35,7 @@ public class Rules {
     	rules.put("1h", new Couple(new Movement(new Integer(0),new Integer(1),new Integer(0),new Integer(0)),false));
     	rules.put("2h", new Couple(new Movement(new Integer(0),new Integer(2),new Integer(0),new Integer(0)),false));
     	rules.put("1D1", new Couple(new Movement(new Integer(1),new Integer(1),new Integer(0),new Integer(0)),false));
+    	rules.put("1d2", new Couple(new Movement(new Integer(-1),new Integer(1),new Integer(0),new Integer(0)),false));
     	
     	rules.put("1d2h", new Couple(new Movement(new Integer(1),new Integer(2),new Integer(0),new Integer(0)),true));
     	rules.put("1d2b", new Couple(new Movement(new Integer(1),new Integer(-2),new Integer(0),new Integer(0)),true));

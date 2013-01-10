@@ -16,6 +16,7 @@ public class Pion extends Piece {
 		m_rules.put("1h", m_allRules.getValueDeplacement("1h"));
 		m_rules.put("2h", m_allRules.getValueDeplacement("2h"));
 		m_rules.put("1D1", m_allRules.getValueDeplacement("1D1"));
+		m_rules.put("1d2", m_allRules.getValueDeplacement("1d2"));
 
 	}
 	
