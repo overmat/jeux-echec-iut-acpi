@@ -146,7 +146,7 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 		
 		if (!event.canMove)
 		{
-			File son = new File("ding.wav");
+			File son = new File("./sounds/stupide.wav");
 			AudioClip clip = null;
 			try
 			{
