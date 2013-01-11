@@ -16,8 +16,8 @@ public abstract class Piece {
 	protected boolean is_deleted;
 	protected boolean firstMove;
 	protected Map<String,Couple<Movement,Boolean>> m_rules;
-	protected String type;
-	
+	protected Map<String,Couple<Movement,Boolean>> m_speceficRulesForEat;
+
 	public Piece(int x, int y, String color)
 	{
 		m_x = x;
@@ -26,8 +26,8 @@ public abstract class Piece {
 		is_deleted = false;
 		firstMove = true;
 		m_rules = new HashMap<String,Couple<Movement,Boolean>>();
+		m_speceficRulesForEat = new HashMap<String,Couple<Movement,Boolean>>();
 		this.addRules();
-		type = "Piece";
 	}
 	
 	
@@ -40,7 +40,8 @@ public abstract class Piece {
 	public boolean canMove(Grille grille, int startLigne, int startColonne, int dx, int dy) {
 		if(sameColor(grille, startLigne,startColonne,dx,dy))
 			return false;
-		System.out.println("hey");
+		boolean hasPieceDestination = grille.hasPiece(dx, dy);
+		
 		Set cles = m_rules.keySet();
 		Iterator it = cles.iterator();
 		int tmp_dx, tmp_dy;
@@ -54,6 +55,8 @@ public abstract class Piece {
 		HashSet<Couple<Integer,Integer>> tmp_destinations = new HashSet<Couple<Integer, Integer>>();
 		int coef = 1;
 		boolean canJump;
+		boolean haveToEat;
+		boolean needEmptyCase;
 		while (it.hasNext()){
 		   String cle =(String) it.next();
 		   boolean infinite = cle.contains("*");
@@ -62,17 +65,17 @@ public abstract class Piece {
 		   //System.out.println(this.m_allRules.getValueDeplacement(cle).getX().getM_y());
 		   rule = this.m_allRules.getValueDeplacement(cle).getX();
 		   canJump = this.m_allRules.getValueDeplacement(cle).getY();
+		   
+		   haveToEat = rule.haveToEat();
+		   needEmptyCase = rule.needEmptyCase();
+		   
 		   if(rule.getM_z1() == 0 && rule.getM_z2() == 0) {
 			   
 			   if(this.getColor() == "White") {
 				   coef = -1;
 			   }
-			   
-			  
 				   tmp_dx = startLigne + coef * rule.getM_y();
 				   tmp_dy = startColonne + coef * rule.getM_x();
-			   
-			   
 			   
 			   if ( (infinite && 
 					   ((
@@ -97,7 +100,7 @@ public abstract class Piece {
 					   return true;
 				   }
 			   }
-			   System.out.println("2." + tmp_dx + ";" + tmp_dy);
+			   //System.out.println("2." + tmp_dx + ";" + tmp_dy);
 		   } else if(rule.getM_z2() != 0) {
 			   if(this.getColor() == "White") {
 				   coef = -1;
@@ -112,12 +115,13 @@ public abstract class Piece {
 					   return true;
 				   }
 			   }
-			   System.out.println("3." + tmp_dx + ";" + tmp_dy);
+			   //System.out.println("3." + tmp_dx + ";" + tmp_dy);
 		   }
 		   boolean canAdd = isDestAvailable(grille, startLigne, startColonne, tmp_dx, tmp_dy);
 		  
 		   if(canAdd) {
-			   tmp_destinations.add(new Couple<Integer, Integer>(tmp_dx, tmp_dy));
+			   if((needEmptyCase && !hasPieceDestination) || (haveToEat && hasPieceDestination) || (!needEmptyCase && !haveToEat))
+				   tmp_destinations.add(new Couple<Integer, Integer>(tmp_dx, tmp_dy));
 		   }
 	}
 		
@@ -129,13 +133,11 @@ public abstract class Piece {
 			 canMove = true;
 		}
 		
-		if(firstMove == false && this.getClass().getSimpleName().compareTo("Pion") == 0 ) {
-			if((dx - startLigne == 2) || (dx - startLigne == -2)) {
-				return false;
-			}
+		if(canMove && this.firstMove == true) {
+			deleteRuleAfterFirstMvt();
+			this.firstMove = false;
 		}
 		
-		this.firstMove = false;
 		return canMove;
 	}
 	
@@ -219,7 +221,7 @@ public abstract class Piece {
 		return canAdd;
 	}
 	
-	private boolean sameColor(Grille grille, int startLigne, int startColonne, int destLigne, int destColonne) {
+	protected boolean sameColor(Grille grille, int startLigne, int startColonne, int destLigne, int destColonne) {
 		
 		if ( grille.hasPiece(destLigne, destColonne))
 		{
@@ -235,5 +237,11 @@ public abstract class Piece {
 		
 	}
 	
+	public abstract void deleteRuleAfterFirstMvt();
+	
+	public Map<String, Couple<Movement, Boolean>> specificMovementForEat()
+	{
+		return m_speceficRulesForEat;
+	}
 	
 }

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Map;
+
 public class Roi extends Piece{
 	public Roi(int x, int y, String color) {
 		super(x,y,color);
@@ -15,6 +17,12 @@ public class Roi extends Piece{
 		m_rules.put("1d1", m_allRules.getValueDeplacement("1d1"));
 		m_rules.put("1D2", m_allRules.getValueDeplacement("1D2"));
 		m_rules.put("1d2", m_allRules.getValueDeplacement("1d2"));
+	}
+
+	@Override
+	public void deleteRuleAfterFirstMvt() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

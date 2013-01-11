@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Map;
+
 public class Fou extends Piece {
 	public Fou(int x, int y, String color) {
 		super(x,y,color);
@@ -11,6 +13,12 @@ public class Fou extends Piece {
 		m_rules.put("*d1", m_allRules.getValueDeplacement("*d1"));
 		m_rules.put("*D2", m_allRules.getValueDeplacement("*D2"));
 		m_rules.put("*d2", m_allRules.getValueDeplacement("*d2"));
+	}
+
+	@Override
+	public void deleteRuleAfterFirstMvt() {
+		// TODO Auto-generated method stub
+		
 	}
 
 

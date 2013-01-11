@@ -32,36 +32,41 @@ public class Rules {
     public static void createAllRules()
     {
     
-    	rules.put("1h", new Couple(new Movement(new Integer(0),new Integer(1),new Integer(0),new Integer(0)),false));
-    	rules.put("2h", new Couple(new Movement(new Integer(0),new Integer(2),new Integer(0),new Integer(0)),false));
-    	rules.put("1D1", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(1),new Integer(0)),false));
-    	rules.put("1d2", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(1)),false));
+    	rules.put("1he", new Couple(new Movement(new Integer(0),new Integer(1),new Integer(0),new Integer(0),false,true),false));
+    	rules.put("2h", new Couple(new Movement(new Integer(0),new Integer(2),new Integer(0),new Integer(0), false,false),false));
+    	rules.put("1D1a", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(1),new Integer(0),true,false),false));
+    	rules.put("1d2a", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(1),true,false),false));
     	
-    	rules.put("1d1", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(-1),new Integer(0)),false));
-    	rules.put("1D2", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(1)),false));
+    	rules.put("1h", new Couple(new Movement(new Integer(0),new Integer(1),new Integer(0),new Integer(0),false,false),false));
     	
-    	rules.put("1d2h", new Couple(new Movement(new Integer(1),new Integer(2),new Integer(0),new Integer(0)),true));
-    	rules.put("1d2b", new Couple(new Movement(new Integer(1),new Integer(-2),new Integer(0),new Integer(0)),true));
-    	rules.put("1g2h", new Couple(new Movement(new Integer(-1),new Integer(2),new Integer(0),new Integer(0)),true));
-    	rules.put("1g2b", new Couple(new Movement(new Integer(-1),new Integer(-2),new Integer(0),new Integer(0)),true));
-    	rules.put("2d1h", new Couple(new Movement(new Integer(2),new Integer(1),new Integer(0),new Integer(0)),true));
-    	rules.put("2d1b", new Couple(new Movement(new Integer(2),new Integer(-1),new Integer(0),new Integer(0)),true));
-    	rules.put("2g1h", new Couple(new Movement(new Integer(-2),new Integer(1),new Integer(0),new Integer(0)),true));
-    	rules.put("2g1b", new Couple(new Movement(new Integer(-2),new Integer(-1),new Integer(0),new Integer(0)),true));
+    	rules.put("1D1", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(1),new Integer(0),false,false),false));
+    	rules.put("1d2", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(1),false,false),false));
     	
-    	rules.put("*h", new Couple(new Movement(new Integer(0),new Integer(7),new Integer(0),new Integer(0)),false));
-    	rules.put("*b", new Couple(new Movement(new Integer(0),new Integer(-7),new Integer(0),new Integer(0)),false));
-    	rules.put("*d", new Couple(new Movement(new Integer(9),new Integer(0),new Integer(0),new Integer(0)),false));
-    	rules.put("*g", new Couple(new Movement(new Integer(-9),new Integer(0),new Integer(0),new Integer(0)),false));
+    	rules.put("1d1", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(-1),new Integer(0),false,false),false));
+    	rules.put("1D2", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(1),false,false),false));
     	
-    	rules.put("*D1", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(7),new Integer(0)),false));
-    	rules.put("*d1", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(7)),false));
-    	rules.put("*D2", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(-7),new Integer(0)),false));
-    	rules.put("*d2", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(-7)),false));
+    	rules.put("1d2h", new Couple(new Movement(new Integer(1),new Integer(2),new Integer(0),new Integer(0),false,false),true));
+    	rules.put("1d2b", new Couple(new Movement(new Integer(1),new Integer(-2),new Integer(0),new Integer(0),false,false),true));
+    	rules.put("1g2h", new Couple(new Movement(new Integer(-1),new Integer(2),new Integer(0),new Integer(0),false,false),true));
+    	rules.put("1g2b", new Couple(new Movement(new Integer(-1),new Integer(-2),new Integer(0),new Integer(0),false,false),true));
+    	rules.put("2d1h", new Couple(new Movement(new Integer(2),new Integer(1),new Integer(0),new Integer(0),false,false),true));
+    	rules.put("2d1b", new Couple(new Movement(new Integer(2),new Integer(-1),new Integer(0),new Integer(0),false,false),true));
+    	rules.put("2g1h", new Couple(new Movement(new Integer(-2),new Integer(1),new Integer(0),new Integer(0),false,false),true));
+    	rules.put("2g1b", new Couple(new Movement(new Integer(-2),new Integer(-1),new Integer(0),new Integer(0),false,false),true));
+    	
+    	rules.put("*h", new Couple(new Movement(new Integer(0),new Integer(7),new Integer(0),new Integer(0),false,false),false));
+    	rules.put("*b", new Couple(new Movement(new Integer(0),new Integer(-7),new Integer(0),new Integer(0),false,false),false));
+    	rules.put("*d", new Couple(new Movement(new Integer(9),new Integer(0),new Integer(0),new Integer(0),false,false),false));
+    	rules.put("*g", new Couple(new Movement(new Integer(-9),new Integer(0),new Integer(0),new Integer(0),false,false),false));
+    	
+    	rules.put("*D1", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(7),new Integer(0),false,false),false));
+    	rules.put("*d1", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(7),false,false),false));
+    	rules.put("*D2", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(-7),new Integer(0),false,false),false));
+    	rules.put("*d2", new Couple(new Movement(new Integer(0),new Integer(0),new Integer(0),new Integer(-7),false,false),false));
     	    	
-    	rules.put("1b", new Couple(new Movement(new Integer(0),new Integer(-1),new Integer(0),new Integer(0)),false));
-    	rules.put("1d", new Couple(new Movement(new Integer(1),new Integer(0),new Integer(0),new Integer(0)),false));
-    	rules.put("1g", new Couple(new Movement(new Integer(-1),new Integer(0),new Integer(0),new Integer(0)),false));
+    	rules.put("1b", new Couple(new Movement(new Integer(0),new Integer(-1),new Integer(0),new Integer(0),false,false),false));
+    	rules.put("1d", new Couple(new Movement(new Integer(1),new Integer(0),new Integer(0),new Integer(0),false,false),false));
+    	rules.put("1g", new Couple(new Movement(new Integer(-1),new Integer(0),new Integer(0),new Integer(0),false,false),false));
 
  
     	

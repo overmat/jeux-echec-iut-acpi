@@ -19,6 +19,7 @@ public class MovementEvent extends EventObject{
 	
 	public boolean eat;
 	public boolean canMove;
+	public String currentPlayer;
 	
 	public MovementEvent(Object source, ResultMove result) {
 		super(source);
@@ -30,6 +31,7 @@ public class MovementEvent extends EventObject{
 		
 		this.eat = result.hasEat();
 		this.canMove = result.CanMove();
+		this.currentPlayer = result.getCurrentPlayer();
 	}
 
 }

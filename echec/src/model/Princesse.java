@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Map;
+
 public class Princesse extends Piece{
 	
 	
@@ -21,6 +23,12 @@ public class Princesse extends Piece{
 		m_rules.put("*d1", m_allRules.getValueDeplacement("*d1"));
 		m_rules.put("*D2", m_allRules.getValueDeplacement("*D2"));
 		m_rules.put("*d2", m_allRules.getValueDeplacement("*d2"));
+	}
+
+	@Override
+	public void deleteRuleAfterFirstMvt() {
+		// TODO Auto-generated method stub
+		
 	}
 
 

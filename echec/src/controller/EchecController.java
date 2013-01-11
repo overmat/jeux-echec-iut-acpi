@@ -21,6 +21,9 @@ public class EchecController {
 		plateauView.display();
 	}
 	
+	public EchecModel getModel() {
+		return model;
+	}
 	
 	public void closeViews(){
 		plateauView.close();

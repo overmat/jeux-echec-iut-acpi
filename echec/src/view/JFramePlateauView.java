@@ -28,6 +28,7 @@ import javax.swing.TransferHandler;
 
 import listerners.MovementEvent;
 import model.Case;
+import model.EtatPartie;
 import model.Grille;
 import model.Piece;
 import view.LoadImages;
@@ -50,11 +51,13 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 	private Case[][] m_pieces = null;
 	private ImageLabel[][] tabImg;
 	private ImageLabel draggedElement;
+	private EtatPartie m_etatPartie;
 	
 	public JFramePlateauView(EchecController controller, Case[][] pieces) {
 		super(controller);
 		// TODO Auto-generated constructor stub
 		this.controller = controller;
+		
 		this.m_pieces = pieces;
 		this.images = new LoadImages();
 		tabImg = new ImageLabel[8][10];
@@ -107,8 +110,10 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 					
 					tmp_imgPiece = new ImageLabel((ImageIcon)method.invoke(images),40+(70*j),(70*i)+40, 70, 70);
 					tabImg[i][j] = tmp_imgPiece;
-					tmp_imgPiece.addMouseListener(this);
-					tmp_imgPiece.addMouseMotionListener(this);
+					if(piece.getColor() == controller.getModel().getEtatPartie().getCurrentPlayer()) {
+						tmp_imgPiece.addMouseListener(this);
+						tmp_imgPiece.addMouseMotionListener(this);
+					}
 					contentPane.add(tmp_imgPiece,0);
 					
 				}
@@ -122,21 +127,19 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 		// TODO Auto-generated method stub
 		draggedElement = (ImageLabel)me.getComponent();
 		controller.notifyMvtPiece(draggedElement.getY() / 70,draggedElement.getX()/70,draggedElement.getStartY() / 70, draggedElement.getStartX() / 70 );
-		
+	
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent me) {
-		
-		if(me.getX() > 0 && me.getX() < 800 && me.getY() > 0 && me.getY() < 675) {
-		// TODO Auto-generated method stub
 		ImageLabel c = (ImageLabel)me.getComponent();
-		// TODO Auto-generated method stub
-		//if(avancerBlock==null) return;
+		//if(controller.getModel().getEtatPartie().getCurrentPlayer() == controller.getModel().getGrille().getPiece(c.getStartY() / 70,c.getStartX() / 70).getColor()) {
+	
 		c.setLocation(me.getX()+c.getX()-35, me.getY()+c.getY()-35);
 		
 		contentPane.add(c,0);
-		}
+		
+		//}
 	}
 	
 	@Override
@@ -148,6 +151,19 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 		if(event.canMove) {
 			draggedElement.setLocation(40+(70*event.destColonne), 40+ event.destLigne*70);
 			tabImg[event.destLigne][event.destColonne] = draggedElement;	
+			for(int i = 0;i<8;i++) {
+				for(int j = 0;j < 10;j++) {
+					if(controller.getModel().getGrille().hasPiece(i, j)) {
+						if(controller.getModel().getGrille().getPiece(i, j).getColor() != event.currentPlayer) {
+							tabImg[i][j].removeMouseMotionListener(this);
+							tabImg[i][j].removeMouseListener(this);
+						} else {
+							tabImg[i][j].addMouseMotionListener(this);
+							tabImg[i][j].addMouseListener(this);
+						}
+					}
+				}
+			}
 		} else {
 			draggedElement.setLocation(40+(70*event.startColonne), 40+ event.startLigne*70);
 		}

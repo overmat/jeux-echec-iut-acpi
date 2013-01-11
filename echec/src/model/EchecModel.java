@@ -11,7 +11,7 @@ public class EchecModel {
 	private EventListenerList listeners;
 	
 	private Grille m_grille;
-	public String resultButton;
+	private EtatPartie m_etatPartie;
 	
 	private ResultMove resultMove;
 	public EchecModel() {
@@ -19,6 +19,8 @@ public class EchecModel {
 		m_grille = new Grille(8,10);
 		m_grille.initialisation();
 		listeners = new EventListenerList();
+		this.m_etatPartie = new EtatPartie("White");
+		
 	}
 	
 	public void addMouvementListener(MovementListener listener){
@@ -36,11 +38,20 @@ public class EchecModel {
 			}
 			
 			m_grille.deplacerPiece(sx, sy, dx, dy);
+			
+			if(this.m_etatPartie.getCurrentPlayer() == "White") {
+				this.m_etatPartie.setCurrentPlayer("Black");
+			} else {
+				this.m_etatPartie.setCurrentPlayer("White");
+			}
 		}
 		
-		this.resultMove = new ResultMove(sx,sy, dx, dy, hasEated, canMove);
+		this.resultMove = new ResultMove(sx,sy, dx, dy, hasEated, canMove,this.m_etatPartie.getCurrentPlayer());
 		
 		fireTriedToMove();
+	}
+	public EtatPartie getEtatPartie() {
+		return this.m_etatPartie;
 	}
 	
 	public Grille getGrille() {

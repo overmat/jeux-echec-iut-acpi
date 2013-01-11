@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Map;
+
 public class Cavalier extends Piece{
 	
 	
@@ -19,5 +21,10 @@ public class Cavalier extends Piece{
 		m_rules.put("2g1b", m_allRules.getValueDeplacement("2g1b"));
 	}
 
+	@Override
+	public void deleteRuleAfterFirstMvt() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

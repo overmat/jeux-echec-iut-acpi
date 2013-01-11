@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Map;
+
 public class Tour extends Piece{
 	public Tour(int x, int y, String color) {
 		super(x,y,color);
@@ -13,5 +15,12 @@ public class Tour extends Piece{
 		m_rules.put("*d", m_allRules.getValueDeplacement("*d"));
 		m_rules.put("*g", m_allRules.getValueDeplacement("*g"));
 	}
+
+	@Override
+	public void deleteRuleAfterFirstMvt() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
