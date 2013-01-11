@@ -78,6 +78,18 @@ public class Grille {
 		return m_grille;
 	}
 	
+	public int getM_largeur() {
+		return m_largeur;
+	}
+
+	public int getM_hauteur() {
+		return m_hauteur;
+	}
+
+	public int getM_nb_cases() {
+		return m_nb_cases;
+	}
+	
 	public Couple searchKing(String color) {
 		int i=0, j=0;
 		boolean trouve = false;
