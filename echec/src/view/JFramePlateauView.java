@@ -146,6 +146,7 @@ public class JFramePlateauView extends EchecView implements ActionListener, Mous
 	public void resultMovement(MovementEvent event) {
 		File son;
 		if(event.eat) {
+			System.out.println("MIiiiiiaaaam");
 			contentPane.remove(tabImg[event.destLigne][event.destColonne]);
 		}
 		if(event.canMove) {

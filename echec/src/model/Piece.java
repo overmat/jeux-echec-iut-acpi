@@ -107,7 +107,7 @@ public abstract class Piece {
 			   }
 			   tmp_dx = startLigne + coef * rule.getM_z2();
 			   tmp_dy = startColonne + rule.getM_z2();
-			   System.out.println("2. "+startLigne + ":" + startColonne + " // " + rule.getM_z2());
+			   //System.out.println("2. "+startLigne + ":" + startColonne + " // " + rule.getM_z2());
 			   if ( infinite && (rule.getM_z2() == 7 || rule.getM_z2() == -7) && rule.getM_z1() == 0 ) 
 			   {
 				   if (((float)(dx-startLigne)/(float)(dy-startColonne)) == 1 && isDestAvailable(grille, startLigne, startColonne, dx, dy))
